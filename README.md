@@ -2,4 +2,4 @@
 External Window Overlay Base with a working implementation of ImGui perfect for making external tools for video games such as trainers, bots and cheats. 
 
 ![alt text](https://i.imgur.com/1I2hg5a.png)
-![alt text](https://i.imgur.com/RM7nG51.png)
+![alt text](https://i.imgur.com/bQeBGIM.png)
