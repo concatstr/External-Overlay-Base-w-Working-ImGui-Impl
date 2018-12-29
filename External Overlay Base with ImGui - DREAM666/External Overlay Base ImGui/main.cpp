@@ -1,7 +1,7 @@
 #include <main.h>
 
-char WINNAME[19] = " ";
-char TARGETNAME[64] = "Roblox";
+char WINNAME[16] = " "; //Overlay Window Name
+char TARGETNAME[64] = "TargetName"; //Target WindowName Here!
 
 DWORD procID;
 MARGINS MARGIN = { 0, 0, Globals::rWidth, Globals::rHeight };
@@ -9,6 +9,8 @@ MARGINS MARGIN = { 0, 0, Globals::rWidth, Globals::rHeight };
 BOOL UNLOADING = FALSE;
 BOOL NOTFOUND = FALSE;
 BOOL INITIALIZED = FALSE;
+
+WNDCLASSEX wndClass;
 
 int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
 
@@ -67,7 +69,6 @@ int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInstance, LPSTR lpCmdLine, in
 }
 
 HWND WINAPI InitializeWin(HINSTANCE hInst) {
-	WNDCLASSEX wndClass;
 
 	wndClass.cbSize = sizeof(WNDCLASSEX);
 	wndClass.cbClsExtra = NULL;
@@ -144,6 +145,13 @@ LRESULT CALLBACK WindowProc(HWND hWnd, UINT uMessage, WPARAM wParam, LPARAM lPar
 			break;
 
 		case WM_DESTROY:
+			//Cleanup Resources
+			ImGui::Shutdown();
+			DeleteObject(wndClass.hbrBackground);
+			DestroyCursor(wndClass.hCursor);
+			DestroyIcon(wndClass.hIcon);
+			DestroyIcon(wndClass.hIconSm);
+
 			PostQuitMessage(1);
 			break;
 
